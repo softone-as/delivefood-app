@@ -5,21 +5,8 @@ import { Image, Text, TouchableOpacity, View } from "react-native";
 import { MapPinIcon } from "react-native-heroicons/outline";
 import { StarIcon } from "react-native-heroicons/solid";
 import { RootStackParamList } from "../../App";
-import { Nullable } from "../../helper";
+import { RestaurantCardProps } from "../../helper/types";
 import { urlFor } from "../../sanity-deliveroo-clone/sanity";
-
-export interface RestaurantCardProps {
-  id: number;
-  image: Nullable<string>;
-  title: Nullable<string>;
-  rating: Nullable<number>;
-  genre: Nullable<string>;
-  address: Nullable<string>;
-  short_description: Nullable<string>;
-  dishes: Nullable<Array<string>>;
-  long: Nullable<number>;
-  lat: Nullable<number>;
-}
 
 type homeScreenProp = NativeStackNavigationProp<RootStackParamList, "Home">;
 

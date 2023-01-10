@@ -1,10 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { DishProps } from "../components/Dish/DishRow";
+import { BasketState, DishProps } from "../helper/types";
 import { RootState } from "../redux/store";
-
-export interface BasketState {
-  items: Array<DishProps>;
-}
 
 const initialState: BasketState = {
   items: [],

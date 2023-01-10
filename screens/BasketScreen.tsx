@@ -13,7 +13,6 @@ import {
 import { RocketLaunchIcon, XCircleIcon } from "react-native-heroicons/solid";
 import { useDispatch, useSelector } from "react-redux";
 import { RootStackParamList } from "../App";
-import { DishProps } from "../components/Dish/DishRow";
 import {
   reduceFromBasket,
   removeFromBasket,
@@ -21,7 +20,8 @@ import {
   selectBasketTotal,
 } from "../features/basketSlice";
 import { selectRestaurantItems } from "../features/restaurantSlice";
-import sanityClient, { urlFor } from "../sanity-deliveroo-clone/sanity";
+import { BasketType, DishProps } from "../helper/types";
+import { urlFor } from "../sanity-deliveroo-clone/sanity";
 
 type basketScreenProp = NativeStackNavigationProp<RootStackParamList, "Basket">;
 
@@ -30,8 +30,11 @@ const BasketScreen = () => {
   const restaurant = useSelector(selectRestaurantItems);
   const items = useSelector(selectBasketItems);
   const basketTotal = useSelector(selectBasketTotal);
-  const [groupedItemsInBasket, setGroupedItemsInBasket] = useState({});
+  const [groupedItemsInBasket, setGroupedItemsInBasket] = useState<BasketType>(
+    {}
+  );
   const dispatch = useDispatch();
+
   useEffect(() => {
     const groupedItems = items.reduce((results: any, item: DishProps) => {
       (results[item.id] = results[item.id] || []).push(item);
@@ -65,7 +68,7 @@ const BasketScreen = () => {
             className="w-7 h-7 bg-gray-300 p-4 rounded-full"
           />
 
-          <Text className="flex-1">Deliver in 50-70 min</Text>
+          <Text className="flex-1">Deliver in 25-30 min</Text>
 
           <TouchableOpacity>
             <Text className="text-[#FFC529]">Change</Text>
@@ -129,7 +132,7 @@ const BasketScreen = () => {
           <View className="flex-row items-center justify-between">
             <Text className="text-gray-400">Delivery Fee</Text>
             <CurrencyFormat
-              value={5.99}
+              value={3500}
               thousandSeparator=","
               prefix="Rp."
               displayType="text"
@@ -142,7 +145,7 @@ const BasketScreen = () => {
           <View className="flex-row items-center justify-between">
             <Text>Order Total</Text>
             <CurrencyFormat
-              value={basketTotal + 5.99}
+              value={basketTotal + 3500}
               thousandSeparator=","
               prefix="Rp."
               displayType="text"

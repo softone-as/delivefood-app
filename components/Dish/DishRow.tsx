@@ -11,15 +11,7 @@ import {
   selectBasketItemsWithItemId,
 } from "../../features/basketSlice";
 import { urlFor } from "../../sanity-deliveroo-clone/sanity";
-
-export interface DishProps {
-  key: React.Key;
-  id: string;
-  name: string;
-  short_description: string;
-  image: string;
-  price: number;
-}
+import { DishProps } from "../../helper/types";
 
 const DishRow = (props: DishProps) => {
   const [isPressed, setIsPressed] = useState(false);
